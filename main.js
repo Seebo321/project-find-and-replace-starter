@@ -21,7 +21,31 @@ function getCellElements (currentRowElement) {
 
 
 // YOUR CODE GOES HERE
-
+let changesMade=0
+replaceAllButton.addEventListener("click", function () {
+    let findInputValue=findInput.value
+    let replaceInputValue=replaceInput.value
+    // console.log(findInputValue)
+    // console.log(replaceInputValue)
+    if(findInputValue.length==0||replaceInputValue.length==0){alert('Please input a value')}
+    else{
+        for(let outerIndex=0;outerIndex<rowElements.length;outerIndex+=1){
+            let cellrows=getCellElements(rowElements[outerIndex])
+                for(let innerIndex=0;innerIndex<cellrows.length; innerIndex+=1){
+                
+                    
+                    if(cellrows[innerIndex].innerText.includes(findInputValue)){
+                    let replacement=cellrows[innerIndex].innerText
+                    replacement=replacement.replace(findInputValue,replaceInputValue)
+                    cellrows[innerIndex].innerHTML=replacement 
+                    changesMade+=1
+                    console.log('Changes made so far '+ changesMade)
+                    
+                    }
+                }
+        }
+    }
+})
 
 // One last thing: dedicate very careful attention to using variables and
 // naming them accurately.
