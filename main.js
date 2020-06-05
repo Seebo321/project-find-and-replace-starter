@@ -4,7 +4,7 @@
 const findInput = document.querySelector(".find-input")
 const replaceInput = document.querySelector(".replace-input")
 const replaceAllButton = document.querySelector(".replace-all-button")
-
+const replaceFirstButton = document.querySelector(".replace-first-button")
 // The following variable holds your OUTER ARRAY of row elements.
 // Later you will need an OUTER LOOP to loop over the individual elements within
 // this array.
@@ -38,6 +38,31 @@ replaceAllButton.addEventListener("click", function () {
                     let replacement=cellrows[innerIndex].innerText
                     replacement=replacement.replace(findInputValue,replaceInputValue)
                     cellrows[innerIndex].innerHTML=replacement 
+                    changesMade+=1
+                    console.log('Changes made so far '+ changesMade)
+                    
+                    }
+                }
+        }
+    }
+})
+replaceFirstButton.addEventListener("click", function () {
+    let findInputValue=findInput.value
+    let replaceInputValue=replaceInput.value
+    // console.log(findInputValue)
+    // console.log(replaceInputValue)
+    if(findInputValue.length==0||replaceInputValue.length==0){alert('Please input a value')}
+    else{
+        for(let outerIndex=0;outerIndex<rowElements.length;outerIndex+=1){
+            let cellrows=getCellElements(rowElements[outerIndex])
+                for(let innerIndex=0;innerIndex<cellrows.length; innerIndex+=1){
+                
+                    
+                    if(cellrows[innerIndex].innerText.includes(findInputValue)){
+                    let replacement=cellrows[innerIndex].innerText
+                    replacement=replacement.replace(findInputValue,replaceInputValue)
+                    cellrows[innerIndex].innerHTML=replacement 
+                    outerIndex=rowElements.length
                     changesMade+=1
                     console.log('Changes made so far '+ changesMade)
                     
